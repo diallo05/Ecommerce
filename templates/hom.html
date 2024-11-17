@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Annonces de ventes</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    background-color: #ccc;
+    padding: 20px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  main section {
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  footer {
+    background-color: #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+</style> 
+</head>
+<body>
+  <header>
+    <h1>Annonces de ventes</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#featured">Annonces en vedette</a></li>
+      <li><a href="#newest">Nouvelles annonces</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="featured">
+      <h2>Annonces en vedette</h2>
+      <ul>
+        <li>Annonce 1</li>
+        <li>Annonce 2</li>
+        <li>Annonce 3</li>
+      </ul>
+    </section>
+    <section id="newest">
+      <h2>Nouvelles annonces</h2>
+      <ul>
+        <li>Annonce 4</li>
+        <li>Annonce 5</li>
+        <li>Annonce 6</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>Copyright © 2021, Annonces de ventes</p>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    // Ajouter un événement au clic sur les éléments de la liste des annonces
+    var listings = document.querySelectorAll("main ul li");
+    for (var i = 0; i < listings.length; i++) {
+    listings[i].addEventListener("click", function() {
+        alert("Vous avez cliqué sur une annonce!");
+    });
+    }
+
+  </script>
+</body>
+</html>

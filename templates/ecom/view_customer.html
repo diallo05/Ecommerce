@@ -1,0 +1,72 @@
+{% extends 'ecom/admin_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src = "https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#bootstrapdatatable').DataTable({     
+      "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+        "iDisplayLength": 3
+       } 
+    ); 
+} );
+</script>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+<!--
+written By : sumit kumar
+facebook : fb.com/sumit.luv
+-->
+<div class="col-md-12">
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h6 class="panel-title">Total Customers</h6>
+    </div>
+    <div class="table-responsive">
+      <table id="bootstrapdatatable" class="table table-striped table-bordered" width="80%">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Picture</th>
+          <th>Contact</th>
+          <th>Address</th>
+          
+        </tr>
+      </thead>
+      {% for c in customers %}
+      <tr>
+        <td> {{c.get_name}}</td>
+        <td> <img src="{% static c.profile_pic.url %}" alt="Profile Pic" height="100px" width="100px" /></td>
+        <td>{{c.mobile}}</td>
+        <td>{{c.address}}</td>
+        
+      </tr>
+      {% endfor %}
+    </table>
+    </div>
+  </div>
+</div>
+<!--
+developed By : sumit kumar
+-->
+{% endblock content %}

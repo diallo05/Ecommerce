@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title> Stat </title>
+        <!-- Inclusion de Chart.js -->
+        <script src="path/to/chart.js"></script>
+
+        <!-- Inclusion de votre fichier JavaScript contenant votre code Chart.js -->
+        <script src="path/to/your-chart-code.js"></script>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <canvas id="productChart"></canvas>
+                </div>
+                <div class="col-md-6">
+                    <p id="avg_price"></p>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+            <script>
+                var ctx = document.getElementById('productChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: '# of Products',
+                            data: [],
+                            backgroundColor: [],
+                            borderColor: [],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+                console.log(url); // Affiche l'URL utilisée pour la requête AJAX
+                $.ajax({
+                    url: '/get-product-data/',
+                    method: 'GET',
+                    success: function(data) { 
+                        console.log(data);  // Affiche les données reçues de la vue Django
+                        //...
+                    }
+                });
+                console.log(myChart.data); // Affiche les données affectées au graphique
+                data.forEach(function(item) {
+                    myChart.data.labels.push(item.category);
+                    myChart.data.datasets[0].data.push(item.total);
+                    myChart.data.datasets[0].backgroundColor.push(getRandomColor());
+                    myChart.data.datasets[0].borderColor.push(getRandomColor());
+                });
+                console.log(myChart.options); // Affiche les options utilisées pour le graphique
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: []
+                        
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                
+                $.ajax({
+                    url: '/get-stats/',
+                    method: 'GET',
+                    success: function(stats) {
+                        $('#avg_price').text('Average Price: ' + stats.avg_price);
+                    }
+                });
+            
+                function getRandomColor() {
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }
+            </script>
+            
+    </body>
+</html>
